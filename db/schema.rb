@@ -33,10 +33,8 @@ ActiveRecord::Schema.define(version: 2020_11_10_002057) do
     t.string "zipcode"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "store_id"
-    t.integer "user_id"
-    t.index ["store_id"], name: "index_addresses_on_store_id"
-    t.index ["user_id"], name: "index_addresses_on_user_id"
+    t.integer "province_id", null: false
+    t.index ["province_id"], name: "index_addresses_on_province_id"
   end
 
   create_table "admin_users", force: :cascade do |t|
@@ -57,8 +55,6 @@ ActiveRecord::Schema.define(version: 2020_11_10_002057) do
     t.integer "birth_year"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "book_id", null: false
-    t.index ["book_id"], name: "index_authors_on_book_id"
   end
 
   create_table "book_categories", force: :cascade do |t|
@@ -66,8 +62,6 @@ ActiveRecord::Schema.define(version: 2020_11_10_002057) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "book_id"
-    t.index ["book_id"], name: "index_book_categories_on_book_id"
   end
 
   create_table "books", force: :cascade do |t|
@@ -75,6 +69,12 @@ ActiveRecord::Schema.define(version: 2020_11_10_002057) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "book_category_id"
+    t.integer "author_id", null: false
+    t.integer "store_id"
+    t.index ["author_id"], name: "index_books_on_author_id"
+    t.index ["book_category_id"], name: "index_books_on_book_category_id"
+    t.index ["store_id"], name: "index_books_on_store_id"
   end
 
   create_table "order_books", force: :cascade do |t|
@@ -94,14 +94,14 @@ ActiveRecord::Schema.define(version: 2020_11_10_002057) do
     t.decimal "current_gst"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "provinces", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "address_id", null: false
-    t.index ["address_id"], name: "index_provinces_on_address_id"
   end
 
   create_table "stores", force: :cascade do |t|
@@ -109,8 +109,6 @@ ActiveRecord::Schema.define(version: 2020_11_10_002057) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "book_id"
-    t.index ["book_id"], name: "index_stores_on_book_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -121,17 +119,18 @@ ActiveRecord::Schema.define(version: 2020_11_10_002057) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "order_id", null: false
+    t.integer "address_id"
+    t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["order_id"], name: "index_users_on_order_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "addresses", "stores"
-  add_foreign_key "addresses", "users"
-  add_foreign_key "authors", "books"
-  add_foreign_key "book_categories", "books"
-  add_foreign_key "provinces", "addresses"
-  add_foreign_key "stores", "books"
-  add_foreign_key "users", "orders"
+  add_foreign_key "addresses", "provinces"
+  add_foreign_key "books", "authors"
+  add_foreign_key "books", "book_categories"
+  add_foreign_key "books", "stores"
+  add_foreign_key "order_books", "books"
+  add_foreign_key "order_books", "orders"
+  add_foreign_key "orders", "users"
+  add_foreign_key "users", "addresses"
 end

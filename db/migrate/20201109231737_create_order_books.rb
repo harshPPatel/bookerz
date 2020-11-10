@@ -3,8 +3,8 @@ class CreateOrderBooks < ActiveRecord::Migration[6.0]
     create_table :order_books do |t|
       t.integer :quantity, :default => 1
       t.decimal :order_price
-      t.belongs_to :order
-      t.belongs_to :book
+      t.references :order, foreign_key: true
+      t.references :book, foreign_key: true
 
       t.timestamps
     end
