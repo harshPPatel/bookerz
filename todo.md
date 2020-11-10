@@ -10,18 +10,19 @@
 
 ### Chapter 3 - Orders
 
-- [ ] make branch
-- [ ] Cart Session Implementation
-- [ ] create partials for book card
-  - [ ] make sure you are showing the price!!!
-- [ ] Add product from cart (user can not add one product twice, update UI accordingly)
-- [ ] Remove product from cart (user can not add one product twice, update UI accordingly)
+- [x] make branch
+- [x] Cart Session Implementation
+- [x] create partials for book card
+  - [x] make sure you are showing the price!!!
+- [x] Add product from cart (user can not add one product twice, update UI accordingly)
+- [x] Remove product from cart (user can not add one product twice, update UI accordingly)
 
 ### Chapter 4 - Billing
 
 - [ ] Make Branch
 - [ ] Billing Process
 - [ ] User Sign Up / Login
+  - https://stackoverflow.com/questions/43433717/how-to-structure-authenticated-routes-when-using-devise
 - [ ] Order History
 - [ ] search results with pagination
 
