@@ -21,12 +21,12 @@
 
 - [x] Make Branch
 - [x] Shopping Cart Page View
-- [ ] User can update quantities of products
+- [x] User can update quantities of products
+- [ ] User Sign Up / Login
+  - https://stackoverflow.com/questions/43433717/how-to-structure-authenticated-routes-when-using-devise
 - [ ] Place order button
   - [ ] Creates order and redirects to order index page
 - [ ] Billing Process
-- [ ] User Sign Up / Login
-  - https://stackoverflow.com/questions/43433717/how-to-structure-authenticated-routes-when-using-devise
 - [ ] Order History
 - [ ] search results with pagination
 

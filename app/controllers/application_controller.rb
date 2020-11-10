@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  # secure by default
+  before_action :authenticate_user!, unless: :devise_controller?
   before_action :fetch_categories
   before_action :initialize_cart
   before_action :load_cart

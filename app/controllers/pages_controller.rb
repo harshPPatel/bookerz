@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:home, :search, :cart, :update_book_in_cart]
+
   def home
     @categories = BookCategory.includes(:books).all
   end
