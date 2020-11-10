@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
-  root 'pages#home'
+  root "pages#home"
   resources :addresses
   resources :book_categories
   resources :books
@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :orders
   resources :stores
 
-  get '/search' => 'pages#search', :as => 'search_page'
+  get "/search" => "pages#search", as: "search_page"
+  post "books/add_to_cart/:id", to: "books#add_to_cart", as: "add_to_cart"
+  delete "books/remove_from_cart/:id", to: "books#remove_from_cart", as: "remove_from_cart"
 
 end
