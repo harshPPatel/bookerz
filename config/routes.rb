@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :stores
 
   get "/search" => "pages#search", as: "search_page"
+  get "/cart" => "pages#cart", as: "cart_page"
+
   post "books/add_to_cart/:id", to: "books#add_to_cart", as: "add_to_cart"
   delete "books/remove_from_cart/:id", to: "books#remove_from_cart", as: "remove_from_cart"
 

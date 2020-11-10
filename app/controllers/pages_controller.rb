@@ -14,6 +14,15 @@ class PagesController < ApplicationController
                end
   end
 
+  def cart
+    @total = @cart.reduce(0) do |accumulator, element|
+      accumulator + element.price
+    end
+    @total = @cart.reduce(0) do |accumulator, element|
+      accumulator + element.price
+    end
+  end
+
   private
 
   def get_results(parameter, params)

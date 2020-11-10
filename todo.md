@@ -19,7 +19,11 @@
 
 ### Chapter 4 - Billing
 
-- [ ] Make Branch
+- [x] Make Branch
+- [ ] Shopping Card Page View
+- [ ] User can update quantities of products
+- [ ] Place order button
+  - [ ] Creates order and redirects to order index page
 - [ ] Billing Process
 - [ ] User Sign Up / Login
   - https://stackoverflow.com/questions/43433717/how-to-structure-authenticated-routes-when-using-devise
