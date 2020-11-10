@@ -3,6 +3,7 @@ class CreateBooks < ActiveRecord::Migration[6.0]
     create_table :books do |t|
       t.string :name, :unique => true, :null => false
       t.text :description
+      t.decimal :price
 
       t.timestamps
     end

@@ -1,0 +1,31 @@
+<div class="<%= 'col-md-6' unless controller.controller_name == "books" && controller.action_name == "show" %>">
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <%= image_tag book.image %>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <% if controller.controller_name == "books" && controller.action_name == "show" %>
+          <h1 class="mb-3"><%= book.name %></h1>
+          <% else %>
+          <h3 class="mb-3"><%= book.name %></h3>
+          <% end %>
+          <p><%= book.description %></p>
+          <% unless current_page?(controller: 'pages', action: 'home') %>
+          <p>
+            <small class="text-muted">
+              Category: <%= link_to  book.book_category.name, book_category_path(book.book_category) %>
+            </small>
+          </p>
+          <% end %>
+          <!-- TODO: update link after adding session carts -->
+          <a href="#" class="btn btn-primary">Add to Cart</a>
+          <% unless controller.controller_name == "books" && controller.action_name == "show" %>
+          <%= link_to  "View Book", book_path(book), class: "btn btn-info" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

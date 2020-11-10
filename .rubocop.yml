@@ -65,3 +65,6 @@ Rails/HasAndBelongsToMany:
 
 Lint/EmptyBlock:
   Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false

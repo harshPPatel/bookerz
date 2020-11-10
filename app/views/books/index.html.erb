@@ -1,0 +1,8 @@
+<h1 class="mt-5 mb-3">Our Books</h1>
+<hr class="mt-5 mb-3" />
+
+<div class="row">
+  <%= render :partial => "book", :collection => @books %>
+</div>
+
+<%= paginate @books %>

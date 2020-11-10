@@ -1,0 +1,9 @@
+<h1 class="mt-5 mb-5">Welcome to Bookerz!!</h1>
+
+<% @categories.each do |category| %>
+<h3 class="mt-5"><%= category.name %></h3>
+<hr class="mb-3">
+<div class="row">
+  <%= render :partial => "book", :collection => category.books %>
+</div>
+<% end %>
