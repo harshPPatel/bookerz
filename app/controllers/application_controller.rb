@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
-  def get_categories
-    categories = BookCategory.all
-    return categories
+  def fetch_categories
+    @categories = BookCategory.all
   end
 end
