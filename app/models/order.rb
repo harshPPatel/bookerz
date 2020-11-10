@@ -5,7 +5,7 @@ class Order < ApplicationRecord
 
   validates :order_date, :current_gst, :current_pst, presence: true
   validates :current_pst,
-            :current_pst,
+            :current_gst,
             numericality: { greater_than_or_equal_to: 0,
                             less_than_or_equal_to:    1 }
 end
