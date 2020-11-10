@@ -22,19 +22,23 @@ end
 
 5.times do
   Store.create(name:        Faker::Company.name,
-               description: Faker::Lorem.sentence)
+               description: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false))
 end
 
 book_categories.each do |category|
   book_category = BookCategory.create(name:        category,
-                                      description: Faker::Lorem.sentence)
+                                      description: Faker::Lorem
+                                                          .paragraph_by_chars(number:       256,
+                                                                              supplemental: false))
   Store.all.each do |store|
     pp(store)
     author = Author.create(first_name: Faker::Name.unique.first_name,
                            last_name:  Faker::Name.unique.last_name,
                            birth_year: Faker::Number.within(range: 1800..2010))
     book_category.books.create(name:        Faker::Name.unique.name,
-                               description: Faker::Lorem.sentence,
+                               description: Faker::Lorem
+                                                  .paragraph_by_chars(number:       256,
+                                                                      supplemental: false),
                                store_id:    store.id,
                                author:      author)
   end
