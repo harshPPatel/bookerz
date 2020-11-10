@@ -1,4 +1,4 @@
 class Store < ApplicationRecord
-  has_many :books
+  has_many :books, dependent: :nullify
   belongs_to :address
 end
