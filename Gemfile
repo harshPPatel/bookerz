@@ -25,6 +25,12 @@ gem 'jbuilder', '~> 2.7'
 # Used to add Authentication to the app
 gem 'devise'
 
+# used to admin panels
+gem 'activeadmin'
+
+# Used to generate fake data
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
