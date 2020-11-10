@@ -1,0 +1,29 @@
+<h1 class="mt-5 mb-3">Our Books</h1>
+<hr class="mt-5 mb-3" />
+
+<div class="row">
+  <% @books.each do |book| %>
+  <!-- TODO: Make it partial and use it in main page, this page, categories pages -->
+  <div class="col-6">
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <%= image_tag book.image %>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"><%= book.name %></h5>
+            <p class="card-text"><%= book.description %></p>
+            <p class="card-text"><small class="text-muted">Category: <%= book.book_category.name %></small></p>
+            <!-- TODO: update link after adding session carts -->
+            <a href="#" class="btn btn-primary">Add to Cart</a>
+            <%= link_to  "View Book", book_path(book), class: "btn btn-info" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+<%= paginate @books %>

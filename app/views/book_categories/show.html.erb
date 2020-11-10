@@ -1,0 +1,41 @@
+<div class="row mt-5">
+  <!-- TODO: Make it partial and use it in main page, this page, categories pages -->
+  <div class="card mb-3 col-md-8 mr-auto ml-auto">
+    <div class="row g-0">
+      <div class="col-md-12">
+        <div class="card-body">
+          <h1 class="mb-3"><%= @category.name %></h1>
+          <p class="card-text"><%= @category.description %></p>
+          <p class="card-text"><small class="text-muted">Total Books: <%= @category.books.length %></small></p>
+          <%= link_to  "View Category", book_category_path(@category), class: "btn btn-info" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3 class="mb-3 mt-5"><%= @category.name %> Books:</h3>
+<div class="row">
+  <% @category.books.each do |book| %>
+  <!-- TODO: Make it partial and use it in main page, this page, categories pages -->
+  <div class="col-6">
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <%= image_tag book.image %>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"><%= book.name %></h5>
+            <p class="card-text"><%= book.description %></p>
+            <p class="card-text"><small class="text-muted">Category: <%= book.book_category.name %></small></p>
+            <!-- TODO: update link after adding session carts -->
+            <a href="#" class="btn btn-primary">Add to Cart</a>
+            <%= link_to  "View Book", book_path(book), class: "btn btn-info" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

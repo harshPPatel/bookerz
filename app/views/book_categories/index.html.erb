@@ -1,0 +1,24 @@
+<h1 class="mt-5 mb-3">Book Categories</h1>
+<hr class="mt-5 mb-3" />
+
+<div class="row">
+  <% @categories.each do |category| %>
+  <!-- TODO: Make it partial and use it in main page, this page, categories pages -->
+  <div class="col-6">
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-12">
+          <div class="card-body">
+            <h5 class="card-title"><%= category.name %></h5>
+            <p class="card-text"><%= category.description %></p>
+            <p class="card-text"><small class="text-muted">Total Books: <%= category.books.length %></small></p>
+            <%= link_to  "View Category", book_category_path(category), class: "btn btn-info" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+<%= paginate @categories %>

@@ -12,6 +12,8 @@
 
 - [ ] make branch
 - [ ] Cart Session Implementation
+- [ ] create partials for book card
+  - [ ] make sure you are showing the price!!!
 - [ ] Add product from cart (user can not add one product twice, update UI accordingly)
 - [ ] Remove product from cart (user can not add one product twice, update UI accordingly)
 

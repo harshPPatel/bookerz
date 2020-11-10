@@ -31,6 +31,9 @@ gem 'activeadmin'
 # Used to generate fake data
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
+# Used to add pagination to the proejct
+gem 'kaminari'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

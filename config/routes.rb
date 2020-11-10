@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
-  root 'products#index'
+  root 'pages#home'
   resources :addresses
   resources :book_categories
   resources :books
