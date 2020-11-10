@@ -16,11 +16,22 @@ class PagesController < ApplicationController
 
   def cart
     @total = @cart.reduce(0) do |accumulator, element|
-      accumulator + element.price
+      accumulator + (element.price * session[:cart][element.id.to_s].to_i)
     end
-    @total = @cart.reduce(0) do |accumulator, element|
-      accumulator + element.price
+    @total_quantities = @cart.reduce(0) do |accumulator, element|
+      accumulator + session[:cart][element.id.to_s].to_i
     end
+  end
+
+  def update_book_in_cart
+    print("ID: " + params[:id])
+    print("QUANTITY: " + params[:quantity])
+    print("EXISTS: #{session[:cart].key?(params[:id])}")
+    print("POSITIVE: #{params[:quantity].to_i.positive?}")
+    id = params[:id].to_i
+    quantity = params[:quantity].to_i
+    session[:cart][id.to_s] = quantity if session[:cart].key?(id.to_s) && quantity.positive?
+    redirect_back fallback_location: root_path
   end
 
   private

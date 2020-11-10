@@ -20,7 +20,7 @@
 ### Chapter 4 - Billing
 
 - [x] Make Branch
-- [ ] Shopping Card Page View
+- [x] Shopping Cart Page View
 - [ ] User can update quantities of products
 - [ ] Place order button
   - [ ] Creates order and redirects to order index page

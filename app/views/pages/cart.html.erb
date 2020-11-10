@@ -8,7 +8,7 @@
       <th scope="col">Category</th>
       <th scope="col">Price</th>
       <th scope="col">Quantity</th>
-      <th scope="col">Delete</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -24,7 +24,10 @@
       <td><%= book.book_category.name %></td>
       <td>$ <%= book.price %></td>
       <td>
-        <%= session[:cart][book.id.to_s] %>
+        <%= form_with(url: "/cart/update_book_in_cart/#{book.id}", method: "post") do %>
+        <input name="quantity" type="number" value="<%= session[:cart][book.id.to_s] %>" />
+        <%= submit_tag("Save", class: "btn btn-sm btn-info") %>
+        <% end %>
       </td>
       <td>
         <%= link_to  "Remove", remove_from_cart_path(book.id), method: :delete, class: 'btn btn-danger' %>
@@ -33,8 +36,8 @@
     <% end %>
     <tr>
       <td scope="row" class="table_image text-center" colspan="3"></td>
-      <td scope="row" class="table_image"><strong>Total Products:</strong></td>
-      <td scope="row" class="table_image">$ <%= @total %></td>
+      <td scope="row" class="table_image"><strong>Total Books:</strong></td>
+      <td scope="row" class="table_image"><%= @total_quantities %></td>
     </tr>
     <tr>
       <td scope="row" class="table_image text-center" colspan="3"></td>
