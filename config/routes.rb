@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   resources :order_books
   resources :orders
   resources :stores
+
+  get '/search' => 'pages#search', :as => 'search_page'
+
 end

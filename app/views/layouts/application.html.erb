@@ -64,10 +64,20 @@
             <a class="nav-link active" aria-current="page" href="#">Cart</a>
           </li>
         </ul>
+        <%= form_tag(search_page_path, :method => "get",
+          class: 'd-flex') do %>
+        <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control mr-2" %>
+        <%= select_tag "category", options_from_collection_for_select(@categories, "id", "name"), prompt: "All categories", class: 'form-control ml-1 mr-1' %>
+        <%= button_tag "Search", :class => 'btn btn-outline-success',:name => nil%>
+        <% end %>
+        <%
+=begin%>
         <form class="d-flex">
           <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
+        <%
+=end%>
       </div>
     </div>
   </nav>

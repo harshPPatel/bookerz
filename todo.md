@@ -1,10 +1,10 @@
 ### Chapter 2
 
-- [ ] make branch
-- [ ] index view
-- [ ] show view
-- [ ] pagination uwing kaminiri gem
-- [ ] category index view
+- [x] make branch
+- [x] index view
+- [x] show view
+- [x] pagination uwing kaminiri gem
+- [x] category index view
 - [ ] search form in navbar
 - [ ] search results with pagination
 
