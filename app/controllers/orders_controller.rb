@@ -22,14 +22,11 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id].to_i)
     @address = Address.find(current_user.address_id)
-    sub_total = @order.order_books.reduce(0) do |accumulator, element|
-      accumulator + (element.price * element.quantity)
+    @province = Province.find(@address.province_id)
+    @sub_total = @order.order_books.reduce(0) do |accumulator, element|
+      accumulator + (element.order_price * element.quantity)
     end
-    total = sub_total * @address.current_gst * @address.current_pst
-    @finance = { total:     total,
-                 sub_total: sub_total,
-                 gst:       @address.current_gst,
-                 pst:       @address.current_pst }
+    @total = @sub_total + (@sub_total * @province.current_gst * @province.current_pst)
   end
 
   def index

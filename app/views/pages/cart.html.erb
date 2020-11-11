@@ -22,7 +22,7 @@
       <th scope="row" class="table_image"><%= image_tag book.image %></th>
       <td><%= book.name %></td>
       <td><%= book.book_category.name %></td>
-      <td>$ <%= book.price %></td>
+      <td>$ <%= number_with_precision(book.price, :precision => 2) %></td>
       <td>
         <%= form_with(url: "/cart/update_book_in_cart/#{book.id}", method: "post") do %>
         <input name="quantity" type="number" value="<%= session[:cart][book.id.to_s] %>" />
@@ -42,7 +42,7 @@
     <tr>
       <td scope="row" class="table_image text-center" colspan="3"></td>
       <td scope="row" class="table_image"><strong>Total:</strong></td>
-      <td scope="row" class="table_image">$ <%= @total %></td>
+      <td scope="row" class="table_image">$ <%= number_with_precision(@total, :precision => 2) %></td>
     </tr>
     <% end %>
   </tbody>
