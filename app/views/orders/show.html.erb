@@ -1,1 +1,56 @@
-<h1>Order ID: <%= params[:id] %></h1>
+<h1 class="display-4 mb-5 mt-5">Order <%= params[:id] %></h1>
+
+<div class="row">
+  <div class="col-4">
+    <h3>Order details:</h3>
+    <p><strong>ID:<strong> <%= @order.id %></p>
+    <p><strong>Date:<strong> <%= @order.order_date.strftime("%FT %T") %></p>
+    <p><strong>Total Ordered Books:<strong> <%= @order.books.length %></p>
+  </div>
+  <div class="col-4">
+    <h3>Order Address:</h3>
+    <p><strong>First Line:<strong> <%= @address.first_line %></p>
+    <p><strong>Second Line:<strong> <%= @address.second_line %></p>
+    <p><strong>City Line:<strong> <%= @address.city %></p>
+    <p><strong>ZipCode Line:<strong> <%= @address.zipcode %></p>
+    <p><strong>Province Line:<strong> <%= @address.province.name %></p>
+  </div>
+  <div class="col-4">
+    <h3>Financial Details:</h3>
+    <p><strong>Sub Total:<strong> <%= @finance.sub_total %></p>
+    <p><strong>GST:<strong> <%= @finance.applied_gst %></p>
+    <p><strong>PST:<strong> <%= @finance.applied_pst %></p>
+    <p><strong>Total:<strong> <%= @finance.total %></p>
+  </div>
+</div>
+
+<h3 class="mb-5 mt-5">Ordered Books:</h3>
+
+<table class="table table-hover mb-5">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Book Image</th>
+      <th scope="col">Name</th>
+      <th scope="col">Ordered Price</th>
+      <th scope="col">Quantities</th>
+      <th scope="col">Book Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @order.order_books.empty? %>
+    <tr>
+      <td scope="row" class="text-center" colspan="6">You do not have any orders 😕!</td>
+    </tr>
+    <% else %>
+    <% @order.order_books.each do |order_book| %>
+    <tr>
+      <th scope="row" class="table_image"><%= image_tag order_book.image %></th>
+      <td> <%= link_to order_book.book.name, book_path(order_book.book) %></td>
+      <td>$ <%= order_book.order_price %></td>
+      <td><%= order_book.quantity %></td>
+      <td><%= order_book.order_price * order_book.quantity %></td>
+    </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>

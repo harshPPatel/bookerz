@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 2020_11_10_053924) do
   create_table "provinces", force: :cascade do |t|
     t.string "name", null: false
     t.decimal "current_gst"
+    t.decimal "current_pst"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

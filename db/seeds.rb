@@ -25,8 +25,8 @@ book_categories = ["Fantasy", "Adventure", "Romance", "Contemporary",
                    "Historical fiction"]
 
 # Adding provinces to the database
-canadian_provinces.each do |province, gst|
-  Province.create(name: province, current_gst: gst)
+canadian_provinces.each do |province, pst|
+  Province.create(name: province, current_pst: pst, current_gst: 0.05)
 end
 
 5.times do
