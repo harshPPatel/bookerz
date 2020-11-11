@@ -19,11 +19,17 @@
 
 ### Chapter 4 - Billing
 
-- [ ] Make Branch
-- [ ] Billing Process
-- [ ] User Sign Up / Login
+- [x] Make Branch
+- [x] Shopping Cart Page View
+- [x] User can update quantities of products
+- [x] User Sign Up / Login
   - https://stackoverflow.com/questions/43433717/how-to-structure-authenticated-routes-when-using-devise
-- [ ] Order History
-- [ ] search results with pagination
+- [x] Place order button
+  - [x] Creates order and redirects to order index page
+- [x] Billing Process
+- [x] Order History
+- [x] search results with pagination
 
-### Chapter 5 - Tests
+### Chapter 5 - Touch Up
+
+- [ ] 3.2.1 -> - As an admin: Your admin backend must include some way to list all the customers who have associated orders along with a list of products ordered, the taxes, and the order grand total.

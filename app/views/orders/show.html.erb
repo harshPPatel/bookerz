@@ -1,0 +1,69 @@
+<div class="row mt-5">
+  <div class="col-md-4">
+    <h3>Order details:</h3>
+    <p><strong>ID:</strong> <%= @order.id %></p>
+    <p><strong>Date:</strong> <%= @order.order_date.strftime("%FT %T") %></p>
+    <p><strong>Total Ordered Books:</strong> <%= @order.books.length %></p>
+  </div>
+  <div class="col-md-4">
+    <h3>Order Address:</h3>
+    <p><strong>First Line:</strong> <%= @address.first_line %></p>
+    <p><strong>Second Line:</strong> <%= @address.second_line %></p>
+    <p><strong>City Line:</strong> <%= @address.city %></p>
+    <p><strong>ZipCode Line:</strong> <%= @address.zipcode %></p>
+    <p><strong>Province Line:</strong> <%= @address.province.name %></p>
+  </div>
+  <div class="col-md-4">
+    <h3>Financial Details:</h3>
+    <p><strong>Sub Total:</strong> $ <%= number_with_precision(@sub_total, :precision => 2).to_s %></p>
+    <p><strong>GST Rate:</strong> <%= (@province.current_gst * 100).to_s %>%</p>
+    <p><strong>PST Rate:</strong> <%= (@province.current_pst * 100).to_s %>%</p>
+    <p><strong>Total:</strong> $ <%= number_with_precision(@total, :precision => 2).to_s %></p>
+  </div>
+</div>
+
+<h3 class="mb-5 mt-5">Ordered Books:</h3>
+
+<table class="table table-hover mb-5">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Book Image</th>
+      <th scope="col">Name</th>
+      <th scope="col" class="text-center">Ordered Price</th>
+      <th scope="col" class="text-center">Quantities</th>
+      <th scope="col" class="text-center">Book Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @order.order_books.empty? %>
+    <tr>
+      <td scope="row" class="text-center" colspan="6">You do not have any orders 😕!</td>
+    </tr>
+    <% else %>
+    <% @order.order_books.each do |order_book| %>
+    <tr>
+      <th scope="row" class="table_image"><%= image_tag order_book.book.image %></th>
+      <td> <%= link_to order_book.book.name, book_path(order_book.book) %></td>
+      <td class="text-right">$ <%= number_with_precision(order_book.order_price, :precision => 2) %></td>
+      <td class="text-center"><%= order_book.quantity %></td>
+      <td class="text-right">$ <%= number_with_precision(order_book.order_price * order_book.quantity, :precision => 2) %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <td scope="row" class="table_image" colspan="3"></td>
+      <td scope="row" class="table_image text-right"><strong>Subtotal:</strong></td>
+      <td scope="row" class="table_image text-right">$ <%= number_with_precision(@sub_total, :precision => 2).to_s %></td>
+    </tr>
+    <tr>
+      <td scope="row" class="table_image" colspan="3"></td>
+      <td scope="row" class="table_image text-right"><strong>Taxes:</strong></td>
+      <td scope="row" class="table_image text-right">$ <%= number_with_precision(@total - @sub_total, :precision => 2).to_s %></td>
+    </tr>
+    <tr>
+      <td scope="row" class="table_image" colspan="3"></td>
+      <td scope="row" class="table_image text-right"><strong>Total:</strong></td>
+      <td scope="row" class="table_image text-right">$ <%= number_with_precision(@total, :precision => 2).to_s %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -68,3 +68,6 @@ Lint/EmptyBlock:
 
 Metrics/AbcSize:
   Enabled: false
+
+Metrics/MethodLength:
+  Enabled: False

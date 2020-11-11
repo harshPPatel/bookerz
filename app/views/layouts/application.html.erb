@@ -56,12 +56,33 @@
           </li>
         </ul>
         <ul class="navbar-nav ml-auto mr-2 mb-2 mb-lg-0">
+          <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+              <%= current_user.email %>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <%= link_to "Orders", orders_path, class: 'dropdown-item' %>
+              </li>
+              <li>
+                <%= link_to "Your Address", addresses_path, class: 'dropdown-item' %>
+              </li>
+              <li>
+                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+              </li>
+            </ul>
+          </li>
+          <% else %>
           <li class="nav-item">
-            <!-- TODO: change it according to user state, drop down with orders, user page and logout buttons -->
-            <a class="nav-link active" aria-current="page" href="#">Login</a>
+            <%= link_to  "Sign Up", new_user_registration_path, class: "nav-link active" %>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Cart <span class="badge bg-danger"><%= @cart.length %></span></a>
+            <%= link_to  "Login", new_user_session_path, class: "nav-link active" %>
+          </li>
+          <% end %>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/cart">Cart <span class="badge bg-danger"><%= @cart.length %></span></a>
           </li>
         </ul>
         <%= form_tag(search_page_path, :method => "get",
@@ -70,14 +91,6 @@
         <%= select_tag "category", options_from_collection_for_select(@categories, "id", "name"), prompt: "All categories", class: 'form-control ml-1 mr-1' %>
         <%= button_tag "Search", :class => 'btn btn-outline-success',:name => nil%>
         <% end %>
-        <%
-=begin%>
-        <form class="d-flex">
-          <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-        <%
-=end%>
       </div>
     </div>
   </nav>

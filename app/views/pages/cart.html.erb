@@ -1,0 +1,64 @@
+<h1 class="display-4 mb-5 mt-5">Your Cart 🛒</h1>
+
+<table class="table table-hover mb-5">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @cart.empty? %>
+    <tr>
+      <td scope="row" class="table_image text-center" colspan="6">You do not have any products in cart 😕!</td>
+    </tr>
+    <% else %>
+    <% @cart.each do |book| %>
+    <tr>
+      <th scope="row" class="table_image"><%= image_tag book.image %></th>
+      <td><%= book.name %></td>
+      <td><%= book.book_category.name %></td>
+      <td>$ <%= number_with_precision(book.price, :precision => 2) %></td>
+      <td>
+        <%= form_with(url: "/cart/update_book_in_cart/#{book.id}", method: "post") do %>
+        <input name="quantity" type="number" value="<%= session[:cart][book.id.to_s] %>" />
+        <%= submit_tag("Save", class: "btn btn-sm btn-info") %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to  "Remove", remove_from_cart_path(book.id), method: :delete, class: 'btn btn-danger' %>
+      </td>
+    </tr>
+    <% end %>
+    <tr>
+      <td scope="row" class="table_image text-center" colspan="3"></td>
+      <td scope="row" class="table_image"><strong>Total Books:</strong></td>
+      <td scope="row" class="table_image"><%= @total_quantities %></td>
+    </tr>
+    <tr>
+      <td scope="row" class="table_image text-center" colspan="3"></td>
+      <td scope="row" class="table_image"><strong>Total:</strong></td>
+      <td scope="row" class="table_image">$ <%= number_with_precision(@total, :precision => 2) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if not @user.address_id.present? %>
+<div class="row">
+  <div class="col-4 ml-auto">
+    <strong>Next Step: </strong>
+    <%= link_to  "Add new Address", new_address_path, class: 'btn btn-info' %>
+  </div>
+</div>
+<% elsif not @cart.empty? %>
+<div class="row">
+  <div class="col-4 ml-auto">
+    <%= link_to  "Place Your Order", "/orders", method: :post, class: 'btn btn-warning' %>
+  </div>
+</div>
+<% end %>

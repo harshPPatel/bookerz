@@ -1,0 +1,48 @@
+<div class="row col-5 mr-auto ml-auto">
+  <h1 class="mt-5 mb-5">Your Address</h1>
+</div>
+
+<div class="row col-5 mr-auto ml-auto">
+  <div class="col-4 font-weight-bold">
+    First Line:
+  </div>
+  <div class="col-8">
+    <%= @address.first_line %>
+  </div>
+</div>
+
+<div class="row col-5 mr-auto ml-auto">
+  <div class="col-4 font-weight-bold">
+    Second Line:
+  </div>
+  <div class="col-8">
+    <%= @address.second_line %>
+  </div>
+</div>
+
+<div class="row col-5 mr-auto ml-auto">
+  <div class="col-4 font-weight-bold">
+    City:
+  </div>
+  <div class="col-8">
+    <%= @address.city %>
+  </div>
+</div>
+
+<div class="row col-5 mr-auto ml-auto">
+  <div class="col-4 font-weight-bold">
+    Zip Code:
+  </div>
+  <div class="col-8">
+    <%= @address.zipcode %>
+  </div>
+</div>
+
+<div class="row col-5 mr-auto ml-auto">
+  <div class="col-4 font-weight-bold">
+    Province:
+  </div>
+  <div class="col-8">
+    <%= @address.province.name %>
+  </div>
+</div>
