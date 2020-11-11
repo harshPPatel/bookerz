@@ -1,10 +1,8 @@
 require "faker"
 
-if Rails.env.development?
-  AdminUser.create!(email:                 "admin@example.com",
-                    password:              "password",
-                    password_confirmation: "password")
-end
+AdminUser.create!(email:                 "admin@example.com",
+                  password:              "password",
+                  password_confirmation: "password")
 
 canadian_provinces = { "Alberta"                   => 0.05,
                        "British Columbia"          => 0.05,
