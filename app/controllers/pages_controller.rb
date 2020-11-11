@@ -23,6 +23,9 @@ class PagesController < ApplicationController
     @total_quantities = @cart.reduce(0) do |accumulator, element|
       accumulator + session[:cart][element.id.to_s].to_i
     end
+    if current_user
+      @user = User.find(current_user.id)
+    end
   end
 
   def update_book_in_cart

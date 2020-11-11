@@ -1,0 +1,40 @@
+<div class="row mt-5">
+  <div class="col-4 mr-auto ml-auto">
+    <h1 class="mb-4 text-center">Add new Address</h1>
+
+    <%
+=begin%>
+    <%= form_tag("/addresses", :method => "post") do %>
+    <%
+=end%>
+    <%= form_for(:address, url: '/addresses', method: :post ) do |f| %>
+
+    <div class="mb-3">
+      <%= f.label :first_line, class: 'form-label' %><br />
+      <%= f.text_field :first_line, autofocus: true, class: 'form-control' %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :second_line, class: 'form-label' %><br />
+      <%= f.text_field :second_line, autofocus: true, class: 'form-control' %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :city, class: 'form-label' %><br />
+      <%= f.text_field :city, autofocus: true, class: 'form-control' %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :zipcode, class: 'form-label' %><br />
+      <%= f.text_field :zipcode, autofocus: true, class: 'form-control' %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :province, class: 'form-label' %><br />
+      <%= f.select :province, options_from_collection_for_select(@provinces, "id", "name"), {}, {prompt: "Select Province", class: 'form-select'} %>
+    </div>
+
+    <%= f.submit "Create Address", class: 'btn btn-primary btn-block' %>
+    <% end %>
+  </div>
+</div>
