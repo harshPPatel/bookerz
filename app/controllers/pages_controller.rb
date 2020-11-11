@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home, :search, :cart, :update_book_in_cart]
+  skip_before_action :authenticate_user!, only: %i[home search cart update_book_in_cart]
 
   def home
     @categories = BookCategory.includes(:books).all
@@ -23,16 +23,10 @@ class PagesController < ApplicationController
     @total_quantities = @cart.reduce(0) do |accumulator, element|
       accumulator + session[:cart][element.id.to_s].to_i
     end
-    if current_user
-      @user = User.find(current_user.id)
-    end
+    @user = User.find(current_user.id) if current_user
   end
 
   def update_book_in_cart
-    print("ID: " + params[:id])
-    print("QUANTITY: " + params[:quantity])
-    print("EXISTS: #{session[:cart].key?(params[:id])}")
-    print("POSITIVE: #{params[:quantity].to_i.positive?}")
     id = params[:id].to_i
     quantity = params[:quantity].to_i
     session[:cart][id.to_s] = quantity if session[:cart].key?(id.to_s) && quantity.positive?

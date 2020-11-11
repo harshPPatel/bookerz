@@ -1,5 +1,5 @@
 class BookCategoriesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:show, :index]
+  skip_before_action :authenticate_user!, only: %i[show index]
 
   def index
     @categories = BookCategory.includes(:books).page params[:page]

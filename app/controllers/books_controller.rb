@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:show, :index, :add_to_cart, :remove_from_cart]
+  skip_before_action :authenticate_user!, only: %i[show index add_to_cart remove_from_cart]
 
   def index
     @books = Book.includes(:book_category).page params[:page]
