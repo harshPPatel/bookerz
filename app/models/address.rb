@@ -1,6 +1,6 @@
 class Address < ApplicationRecord
   belongs_to :user, optional: true
-  has_one :province, dependent: :nullify
+  belongs_to :province
 
   validates :first_line, :city, :zipcode, presence: true
 end

@@ -1,5 +1,3 @@
-require 'pp'
-
 class AddressesController < ApplicationController
   def index
     @address = Address.includes(:province).find(current_user.address_id)

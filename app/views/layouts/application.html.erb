@@ -66,6 +66,9 @@
                 <%= link_to "Orders", orders_path, class: 'dropdown-item' %>
               </li>
               <li>
+                <%= link_to "Your Address", addresses_path, class: 'dropdown-item' %>
+              </li>
+              <li>
                 <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
               </li>
             </ul>
