@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <title>Bookerz</title>
@@ -58,10 +58,10 @@
         <ul class="navbar-nav ml-auto mr-2 mb-2 mb-lg-0">
           <% if user_signed_in? %>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
               <%= current_user.email %>
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <ul class="dropdown-menu" aria-labelledby="userDropdown">
               <li>
                 <%= link_to "Orders", orders_path, class: 'dropdown-item' %>
               </li>

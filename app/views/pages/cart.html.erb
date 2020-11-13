@@ -19,7 +19,7 @@
     <% else %>
     <% @cart.each do |book| %>
     <tr>
-      <th scope="row" class="table_image"><%= image_tag book.image %></th>
+      <th scope="row" class="table_image"><%= image_tag(book.image, alt: book.name) %></th>
       <td><%= book.name %></td>
       <td><%= book.book_category.name %></td>
       <td>$ <%= number_with_precision(book.price, :precision => 2) %></td>

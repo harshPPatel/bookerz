@@ -42,7 +42,7 @@
     <% else %>
     <% @order.order_books.each do |order_book| %>
     <tr>
-      <th scope="row" class="table_image"><%= image_tag order_book.book.image %></th>
+      <th scope="row" class="table_image"><%= image_tag(order_book.book.image, alt: order_book.book.name ) %></th>
       <td> <%= link_to order_book.book.name, book_path(order_book.book) %></td>
       <td class="text-right">$ <%= number_with_precision(order_book.order_price, :precision => 2) %></td>
       <td class="text-center"><%= order_book.quantity %></td>
