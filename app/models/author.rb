@@ -4,4 +4,8 @@ class Author < ApplicationRecord
 
   validates :first_name, :last_name, :birth_year, presence: true
   validates :birth_year, numericality: { only_integer: true }
+
+  def to_s
+    first_name
+  end
 end

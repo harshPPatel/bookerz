@@ -1,6 +1,6 @@
 ActiveAdmin.register Author do
 
-  # permit_params :first_name, :last_name, :birth_year
+  permit_params :first_name, :last_name, :birth_year, :image
 
   form do |f|
     f.semantic_errors
