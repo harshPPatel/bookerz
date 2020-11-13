@@ -6,7 +6,6 @@ class PagesController < ApplicationController
   end
 
   def search
-    @categories = get_categories
     params[:search].blank? && redirect_to(root_path) and return
     parameter = "%#{params[:search].downcase}%"
     @results = if params[:category].empty?
